@@ -13,8 +13,6 @@
   },
   "keywords": ["monitor", "sounds", "audio", "noises"],
 	"dependencies": {
-		"play" : "0.5.x",
-		"cron" : "0.1.x"
   },
   "devDependencies" : {
   	"jshint" : "0.5.x",

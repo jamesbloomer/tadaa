@@ -1,42 +1,42 @@
 var vows = require('vows'),
 		should = require('should'),
 		sinon = require('sinon'),
-		play = require('play'),
+		child = require('child_process'),
 		tadaa = require('../lib/tadaa.js');
 
 vows.describe('Tadaa Tests')
 .addBatch({
 	'when result is greater than current' : {
 		topic : function() {
-			sinon.stub(play, 'sound').yields(null);
+			sinon.stub(child, 'exec').yields(null);
 			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', this.callback);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
 		'should call play with up.wav' : function(stub) {
-			play.sound.calledWith('up.wav').should.be.true;
+			child.exec.calledWith('aplay up.wav').should.be.true;
 		},
 	},
 	teardown: function() {
-		play.sound.restore();
+		child.exec.restore();
 	}
 })
 .addBatch({
 	'when result is less than current' : {
 		topic : function() {
-			sinon.stub(play, 'sound').yields(null);
+			sinon.stub(child, 'exec').yields(null);
 			tadaa.playCorrectSound(1, 2, 'up.wav', 'down.wav', this.callback);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
 		'should call play with down.wav' : function(stub) {
-			play.sound.calledWith('down.wav').should.be.true;
+			child.exec.calledWith('aplay down.wav').should.be.true;
 		},
 	},
 	teardown: function() {
-		play.sound.restore();
+		child.exec.restore();
 	}
 })
 /*
