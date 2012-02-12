@@ -9,7 +9,10 @@ program
     .option('-i, --interval [interval]', 'The interval in ms for which to check the monitoring call')
     .option('-u, --up [up]', 'The sound to play when the monitored value goes up')
     .option('-d, --down [down]', 'The sound to play when the monitored value goes down')
+		.option('-pt --pttoken [pttoken]', 'A Pivotal Tracker API token')
+		.option('-pp --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
     .parse(process.argv);
 
 // TODO switch in some useful value checkers
-tadaa.start(program.interval, program.up, program.down, pivotaltracker.getOpenBugs};
+var pivotalOptions = { token: program.pttoken, projectId: ptprojectid };
+tadaa.start(program.interval, program.up, program.down, pivotaltracker.getOpenBugs, pivotalOptions};

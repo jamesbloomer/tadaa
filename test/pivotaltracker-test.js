@@ -10,7 +10,7 @@ vows.describe('Tadaa Pivotal Tracker Tests')
 		topic : function() {
 			sinon.stub(pivotal, 'useToken');
 			sinon.stub(pivotal, 'getStories').yields(null);
-			pivotaltracker.getOpenBugs(this.callback);
+			pivotaltracker.getOpenBugs({ token: "myToken", projectId: "projectId" }, this.callback);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
@@ -27,7 +27,7 @@ vows.describe('Tadaa Pivotal Tracker Tests')
 	},
 	teardown: function() {
 		pivotal.useToken.restore();
-        pivotal.getStories.restore();
+		pivotal.getStories.restore();
 	}
 })
 .export(module);
