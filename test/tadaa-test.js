@@ -16,7 +16,7 @@ vows.describe('Tadaa Tests')
 		},
 		'should play up.wav' : function(stub) {
 			child.exec.calledWith('aplay up.wav').should.be.true;
-		},
+		}
 	},
 	teardown: function() {
 		child.exec.restore();
@@ -33,7 +33,7 @@ vows.describe('Tadaa Tests')
 		},
 		'should play down.wav' : function(stub) {
 			child.exec.calledWith('aplay down.wav').should.be.true;
-		},
+		}
 	},
 	teardown: function() {
 		child.exec.restore();
@@ -50,7 +50,7 @@ vows.describe('Tadaa Tests')
 		},
 		'should not play a sound' : function(stub) {
 			child.exec.called.should.be.false;
-		},
+		}
 	},
 	teardown: function() {
 		child.exec.restore();
@@ -58,14 +58,17 @@ vows.describe('Tadaa Tests')
 })
 /*
 .addBatch({
-	'when start called' : {
+	'when getValueAndPlaySound called' : {
 		topic : function() {
 			var stub = sinon.stub(tadaa, 'playCorrectSound').yields(null);
-			tadaa.start(30000, 'up', 'down', function(callback) { callback(null, 1); });
+			tadaa.getValueAndPlaySound('up', 'down', function(callback) { callback(null, 1); });
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
+        'should call playCorrectSound' : {
+            tada.playCorrectSound.calledOnce.should.be.true;
+        }
 	},
 	teardown: function() {
 		tadaa.playCorrectSound.restore();
