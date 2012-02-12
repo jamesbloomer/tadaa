@@ -9,7 +9,7 @@ vows.describe('Tadaa Tests')
 	'when result is greater than current' : {
 		topic : function() {
 			sinon.stub(child, 'exec').yields(null);
-			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', this.callback);
+			tadaa.playCorrectSound(1, 2, 'up.wav', 'down.wav', this.callback);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
@@ -26,7 +26,7 @@ vows.describe('Tadaa Tests')
 	'when result is less than current' : {
 		topic : function() {
 			sinon.stub(child, 'exec').yields(null);
-			tadaa.playCorrectSound(1, 2, 'up.wav', 'down.wav', this.callback);
+			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', this.callback);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
@@ -61,7 +61,7 @@ vows.describe('Tadaa Tests')
 	'when start called' : {
 		topic : function() {
 			var stub = sinon.stub(tadaa, 'playCorrectSound').yields(null);
-			tadaa.start('* * * * * *', function(callback) { callback(null, 1); });
+			tadaa.start(30000, 'up', 'down', function(callback) { callback(null, 1); });
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);

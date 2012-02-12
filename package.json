@@ -1,6 +1,6 @@
 { 
   "name": "tadaa",
-	"description": "Monitor stuff by the medium of sound.",
+	"description": "Monitor stuff via the medium of sound.",
 	"version": "0.0.1",
   "licenses": [{
     "type": "MIT",
