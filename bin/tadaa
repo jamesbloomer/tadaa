@@ -11,5 +11,4 @@ program
     .option('-d, --down [down]', 'The sound to play when the monitored value goes down')
     .parse(process.argv);
 
-// TODO switch in some useful value checkers
 tadaa.start(program.interval, program.up, program.down, pivotaltracker.getOpenBugs};
