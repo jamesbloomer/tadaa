@@ -33,6 +33,7 @@ vows.describe('Tadaa Tests')
 		},
 		'should play down.wav' : function(stub) {
 			child.exec.calledWith('aplay down.wav').should.be.true;
+
 		}
 	},
 	teardown: function() {
@@ -66,9 +67,9 @@ vows.describe('Tadaa Tests')
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
-        'should call playCorrectSound' : {
-            tada.playCorrectSound.calledOnce.should.be.true;
-        }
+		'should call playCorrectSound' : function(err, result) {
+			tadaa.playCorrectSound.calledOnce.should.be.true;
+		}
 	},
 	teardown: function() {
 		tadaa.playCorrectSound.restore();

@@ -23,8 +23,10 @@ Tada can play an up or a down sound, depending on whether the value you are moni
     var getValue = function(callback){
         // ...my clever value logic...
         callback(null, Math.random() * 100); } 
+        
+    var getValueOptions = { a : 1, b : 2 }; // Data to pass to the function.
     
-    tadaa.start(interval, up, down, getValue};
+    tadaa.start(interval, up, down, getValue, getValueOptions};
     
 ## Examples
 
