@@ -11,8 +11,27 @@ program
     .option('-d, --down [down]', 'The sound to play when the monitored value goes down')
 		.option('-t --pttoken [pttoken]', 'A Pivotal Tracker API token')
 		.option('-p --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
+		.option('-p --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
     .parse(process.argv);
 
-// TODO switch in some useful value checkers
+
 var pivotalOptions = { token: program.pttoken, projectId: program.ptprojectid };
-tadaa.start(program.interval, program.up, program.down, pivotaltracker.getOpenBugs, pivotalOptions);
+var pivotalFunctions = ['bugs', 'features'];
+var getValue;
+
+console.log('Choose which story type to monitor:');
+program.choose(pivotalFunctions, function(i){
+	switch(i) {
+		case 0:
+			getValue = pivotaltracker.getOpenBugs;
+			break;
+
+		case 1:
+			getValue = pivotaltracker.getOpenFeatures;
+			break;
+	};
+
+	tadaa.start(program.interval, program.up, program.down, getValue, pivotalOptions);
+});
+
+
