@@ -14,7 +14,6 @@ program
 		.option('-p --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
     .parse(process.argv);
 
-
 var pivotalOptions = { token: program.pttoken, projectId: program.ptprojectid };
 var pivotalFunctions = ['bugs', 'features'];
 var getValue;
@@ -33,5 +32,4 @@ program.choose(pivotalFunctions, function(i){
 
 	tadaa.start(program.interval, program.up, program.down, getValue, pivotalOptions);
 });
-
 
