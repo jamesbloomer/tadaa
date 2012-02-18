@@ -16,7 +16,6 @@ vows.describe('Tadaa Pivotal Tracker Tests')
 			should.not.exist(err);
 		},
 		'should call pivotal methods' : function(err, result) {
-			// TODO change when token changes
 			pivotal.useToken.calledWith('myToken').should.be.true;
 			pivotal.getStories.calledWith('projectId', { filter: "type:bug state:unscheduled,unstarted,started,finished,delivered,rejected" }).should.be.true;
 		},
@@ -25,6 +24,32 @@ vows.describe('Tadaa Pivotal Tracker Tests')
 			should.not.exist(err);
         }
 	},
+
+	teardown: function() {
+		pivotal.useToken.restore();
+		pivotal.getStories.restore();
+	}
+})
+.addBatch({
+	'when getOpenFeatures called ' : {
+		topic : function() {
+			sinon.stub(pivotal, 'useToken');
+			sinon.stub(pivotal, 'getStories').yields(null);
+			pivotaltracker.getOpenFeatures({ token: "myToken", projectId: "projectId" }, this.callback);
+		},
+		'should not error' : function(err, result) {
+			should.not.exist(err);
+		},
+		'should call pivotal methods' : function(err, result) {
+			pivotal.useToken.calledWith('myToken').should.be.true;
+			pivotal.getStories.calledWith('projectId', { filter: "type:feature state:unscheduled,unstarted,started,finished,delivered,rejected" }).should.be.true;
+		},
+		'should get correct story length' : function(err, result) {
+			// TODO
+			should.not.exist(err);
+    }
+	},
+
 	teardown: function() {
 		pivotal.useToken.restore();
 		pivotal.getStories.restore();
