@@ -23,7 +23,7 @@ vows.describe('Tadaa Pivotal Tracker Tests')
 		'should get correct story length' : function(err, result) {
 			// TODO
 			should.not.exist(err);
-    }
+        }
 	},
 	teardown: function() {
 		pivotal.useToken.restore();

@@ -14,7 +14,7 @@ vows.describe('Tadaa Tests')
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
-		'should play up.wav' : function(stub) {
+		'should play up.wav' : function() {
 			child.exec.calledWith('aplay up.wav').should.be.true;
 		}
 	},

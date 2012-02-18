@@ -30,8 +30,8 @@ Tada can play an up or a down sound, depending on whether the value you are moni
     
 ## Examples
 
-Use Tadaa to:
-- Play a sound when a bug is raised or closed in your bug tracking system
-- Play a sound when a story is finished
-- Play a sound when your favourite team scores / conceeds.
-- etc...
+Use Tadaa to
+* Play a sound when a bug is raised or closed in your bug tracking system
+* Play a sound when a story is finished
+* Play a sound when your favourite team scores / conceeds.
+* etc...
