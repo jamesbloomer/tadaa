@@ -37,4 +37,4 @@ Use Tadaa to
 * Play a sound when your favourite team scores / conceeds.
 * etc...
 
-[![endorese image](http://api.coderwall.com/mdeiters/endorsecount.png)](http://coderwall.com/jamesbloomer)
+[![endorse](http://api.coderwall.com/jamesbloomer/endorsecount.png)](http://coderwall.com/jamesbloomer)
