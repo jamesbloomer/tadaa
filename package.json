@@ -24,6 +24,6 @@
 	},
   "main": "./lib/tadaa",
   "bin": { "tadaa": "./bin/tadaa" },
-  "scripts": { "test": "vows test/*-test.js --spec" },
+  "scripts": { "test": "vows test/*_test.js --spec" },
   "engines": { "node": ">= 0.6.0" }
 }
