@@ -2,6 +2,8 @@
 
 Monitor stuff via the medium of sound.
 
+[![Build Status](https://secure.travis-ci.org/jamesbloomer/tadaa.png?branch=master)](http://travis-ci.org/jamesbloomer/tadaa)
+
 ## Install
 
     $ npm install tadaa
