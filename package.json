@@ -7,12 +7,14 @@
     "url": "https://github.com/jamesbloomer/tadaa/raw/master/LICENSE"
   }],
   "author": { "name": "James Bloomer", "url": "https://github.com/jamesbloomer" },
+  "contributors": [{ "name": "Roy Lines", "url": "http://roylines.co.uk" } ],
   "repository": {
     "type": "git",
     "url": "http://github.com/jamesbloomer/tadaa.git" 
   },
   "keywords": ["monitor", "sounds", "audio", "noises"],
 	"dependencies": {
+    "buddha": "1.0.x",
     "commander": "0.5.x",
     "pivotal": "0.1.x"
   },
