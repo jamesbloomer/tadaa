@@ -2,15 +2,20 @@
 
 var tadaa = require('../lib/tadaa.js'),
     pivotaltracker = require('../lib/pivotaltracker.js'),
+    zendesk = require('../lib/zendesk.js'),
     program = require('commander');
 
 program
     .version('0.0.3')
-    .option('-i, --interval [interval]', 'The interval in ms for which to check the monitoring call', 60000)
+    .option('-i, --interval [interval]', 'The interval in ms for which to check the monitoring call', 5000)
     .option('-u, --up [up]', 'The sound to play when the monitored value goes up')
     .option('-d, --down [down]', 'The sound to play when the monitored value goes down')
 		.option('-t --pttoken [pttoken]', 'A Pivotal Tracker API token')
-		.option('-p --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id');
+		.option('-p --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
+		.option('-h --zenhost [zenhost]', 'The Zendesk host')
+		.option('-e --zenemail [zenemail]', 'Email for Zendesk')
+		.option('-a --zenpassword [zenpassword]', 'Password for Zendesk')
+		.option('-v --zenview [zenview ]', 'The Zendesk view to monitor');
 
 var options;
 var getValue;
@@ -20,27 +25,37 @@ var start = function() {
 };
 
 program
-		.command('pivotaltracker')
-		.description('monitor Pivotal Tracker')
-		.action(function() {
-			console.log('Monitoring Pivotal Tracker');
-			options = { token: program.pttoken, projectId: program.ptprojectid };
-			var pivotalFunctions = ['bugs', 'features'];
-			console.log('Choose which story type to monitor:');
-			program.choose(pivotalFunctions, function(i){
-				switch(i) {
-					case 0:
-						getValue = pivotaltracker.getOpenBugs;
-						break;
+	.command('pivotaltracker')
+	.description('monitor Pivotal Tracker')
+	.action(function() {
+		console.log('Monitoring Pivotal Tracker');
+		options = { token: program.pttoken, projectId: program.ptprojectid };
+		var pivotalFunctions = ['bugs', 'features'];
+		console.log('Choose which story type to monitor:');
+		program.choose(pivotalFunctions, function(i){
+			switch(i) {
+				case 0:
+					getValue = pivotaltracker.getOpenBugs;
+					break;
 
-					case 1:
-						getValue = pivotaltracker.getOpenFeatures;
-						break;
-				};
+				case 1:
+					getValue = pivotaltracker.getOpenFeatures;
+					break;
+			};
 
-				start();
-			});
+			start();
 		});
+	});
+
+program
+	.command('zendesk')
+	.description('monitor Zendesk')
+	.action(function() {
+		console.log('Monitoring Zendesk');
+		options = { zenHost: program.zenhost, zenEmail: program.zenemail, zenPassword: program.zenpassword, zenView: program.zenview };
+		getValue = zendesk.getOpenTickets;
+		start();
+	});
     
 program.parse(process.argv);
 
