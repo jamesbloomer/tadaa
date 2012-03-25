@@ -9,31 +9,30 @@ vows.describe('Tadaa Tests')
 	'when result is greater than current' : {
 		topic : function() {
 			sinon.stub(child, 'exec').yields(null);
-			tadaa.playCorrectSound(1, 2, 'up.wav', 'down.wav', this.callback);
-		},
+			tadaa.playCorrectSound(1, 2, 'up.wav', 'down.wav', null, this.callback);
+		}, 
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
 		'should play up.wav' : function() {
 			child.exec.calledWith('aplay up.wav').should.be.true;
-		}
+		} 
 	},
 	teardown: function() {
 		child.exec.restore();
 	}
-})
+})  
 .addBatch({
 	'when result is less than current' : {
 		topic : function() {
 			sinon.stub(child, 'exec').yields(null);
-			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', this.callback);
+			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', null, this.callback);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
 		'should play down.wav' : function(stub) {
 			child.exec.calledWith('aplay down.wav').should.be.true;
-
 		}
 	},
 	teardown: function() {
@@ -44,7 +43,7 @@ vows.describe('Tadaa Tests')
 	'when result is equal to current' : {
 		topic : function() {
 			sinon.stub(child, 'exec').yields(null);
-			tadaa.playCorrectSound(1, 1, 'up.wav', 'down.wav', this.callback);
+			tadaa.playCorrectSound(1, 1, 'up.wav', 'down.wav', null, this.callback);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
@@ -52,28 +51,67 @@ vows.describe('Tadaa Tests')
 		'should not play a sound' : function(stub) {
 			child.exec.called.should.be.false;
 		}
+	}, 
+	teardown: function() {
+		child.exec.restore();
+	}
+})
+.addBatch({
+    'when audio player is set' : {
+		topic : function() {
+			sinon.stub(child, 'exec').yields(null);
+			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', 'afplay', this.callback);
+		},
+		'should not error' : function(err, result) {
+			should.not.exist(err);
+		}, 
+		'should play down.wav with afplay' : function(stub) {
+			child.exec.calledWith('afplay down.wav').should.be.true;
+		}
 	},
 	teardown: function() {
 		child.exec.restore();
 	}
 })
 /*
+// need to refactor so that internal playCorrectSound is the same as the exports
 .addBatch({
 	'when getValueAndPlaySound called' : {
 		topic : function() {
 			var stub = sinon.stub(tadaa, 'playCorrectSound').yields(null);
-			tadaa.getValueAndPlaySound('up', 'down', function(callback) { callback(null, 1); });
+            var getValue = function(options, callback) {
+                callback(null, 1);
+            };
+            
+			tadaa.getValueAndPlaySound('up', 'down', getValue);
 		},
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
 		'should call playCorrectSound' : function(err, result) {
 			tadaa.playCorrectSound.calledOnce.should.be.true;
-		}
+		} 
 	},
 	teardown: function() {
 		tadaa.playCorrectSound.restore();
 	}
+})
+*/
+/*
+.addBatch({
+    'when start called' : {
+        topic: function() {
+            var clock = sinon.useFakeTimers();
+            sinon.stub(tadaa, 'getValueAndPlaySound').yields(null);
+            tadaa.start(10, 'upsound', 'downSound', 'getValue', 'getValueOptions', 'audioPlayer');
+            clock.tick(20); 
+        },
+        'should pass through parameters': function(err, result) {
+            tadaa.getValueAndPlaySound
+                 .calledWith('upsound', 'downSound', 'getValue', 'getValueOptions', 'audioPlayer')
+                 .should.be.true;
+        } 
+    }
 })
 */
 .export(module);
