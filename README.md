@@ -10,16 +10,18 @@ Monitor stuff via the medium of sound.
 
 ## Requirements
 
-Tadaa assumes that 'aplay' is executable available on the system (mostly true for Linux systems). 
+A command line executable audio player. 
+Tadaa defaults to 'aplay' (available for Linux systems) but the player can be configured. 
 
 ## Usage
 
 Tada can play an up or a down sound, depending on whether the value you are monitoring goes up or down.
 
     var tadaa = require('tadaa');
-    var interval = 60000;   // time in ms for which the value function is called
-    var up = 'up.wav';      // sound to play when value goes up
-    var down = 'down.wav';  // sound to play when value goes down
+    var interval = 60000;       // time in ms for which the value function is called
+    var up = 'up.wav';          // sound to play when value goes up
+    var down = 'down.wav';      // sound to play when value goes down
+    var audioPlayer = 'mplayer' // player used to play sounds, defaults to aplay
     
     // Function to call to get the value
     var getValue = function(callback){
@@ -28,7 +30,7 @@ Tada can play an up or a down sound, depending on whether the value you are moni
         
     var getValueOptions = { a : 1, b : 2 }; // Data to pass to the function.
     
-    tadaa.start(interval, up, down, getValue, getValueOptions};
+    tadaa.start(interval, up, down, getValue, getValueOptions, audioPlayer};
     
 ## Examples
 
