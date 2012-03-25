@@ -6,22 +6,23 @@ var tadaa = require('../lib/tadaa.js'),
     program = require('commander');
 
 program
-	.version('0.0.3')
+	.version('0.0.4')
 	.option('-i, --interval [interval]', 'The interval in ms for which to check the monitoring call', 5000)
 	.option('-u, --up [up]', 'The sound to play when the monitored value goes up')
 	.option('-d, --down [down]', 'The sound to play when the monitored value goes down')
-	.option('-t --pttoken [pttoken]', 'A Pivotal Tracker API token')
-	.option('-p --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
-	.option('-h --zenhost [zenhost]', 'The Zendesk host')
-	.option('-e --zenemail [zenemail]', 'Email for Zendesk')
-	.option('-a --zenpassword [zenpassword]', 'Password for Zendesk')
-	.option('-v --zenview [zenview ]', 'The Zendesk view to monitor');
+	.option('-a, --audioplayer [audioplayer]', 'The audio player to use to play the sounds', 'aplay')
+	.option('-t, --pttoken [pttoken]', 'A Pivotal Tracker API token')
+	.option('-p, --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
+	.option('-h, --zenhost [zenhost]', 'The Zendesk host')
+	.option('-e, --zenemail [zenemail]', 'Email for Zendesk')
+	.option('-s, --zenpassword [zenpassword]', 'Password for Zendesk')
+	.option('-v, --zenview [zenview ]', 'The Zendesk view to monitor');
 
 var options;
 var getValue;
 
 var start = function() {
-	tadaa.start(program.interval, program.up, program.down, getValue, options);
+	tadaa.start(program.interval, program.up, program.down, getValue, options, program.audioplayer);
 };
 
 program
