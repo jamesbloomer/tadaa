@@ -5,7 +5,7 @@ var vows = require('vows'),
 		tadaa = require('../lib/tadaa.js');
 
 vows.describe('Tadaa Tests')
-.addBatch({
+.addBatch({ 
 	'when result is greater than current' : {
 		topic : function() {
 			sinon.stub(child, 'exec').yields(null);
@@ -70,17 +70,34 @@ vows.describe('Tadaa Tests')
 		}
 	},
 	teardown: function() {
-		child.exec.restore();
+		child.exec.restore(); 
+	}
+})
+.addBatch({
+    'when start called' : {
+        topic: function() { 
+            sinon.stub(tadaa, 'getValueAndPlaySound').yields(null);
+            var clock = sinon.useFakeTimers();
+            tadaa.start(10, 'upsound', 'downSound', 'getValue', 'getValueOptions', 'audioPlayer');
+            clock.tick(15);  
+        },
+        'should call getValueAndPlaySound': function(err, result) {
+            tadaa.getValueAndPlaySound
+                 .calledOnce
+                 .should.be.true;
+        }
+    },
+    teardown: function() {
+		tadaa.getValueAndPlaySound.restore(); 
 	}
 })
 /*
-// need to refactor so that internal playCorrectSound is the same as the exports
 .addBatch({
-	'when getValueAndPlaySound called' : {
+    'when getValueAndPlaySound called' : {
 		topic : function() {
-			var stub = sinon.stub(tadaa, 'playCorrectSound').yields(null);
+			sinon.stub(tadaa, 'playCorrectSound').yields(null);
             var getValue = function(options, callback) {
-                callback(null, 1);
+                return callback(null, 1);
             };
             
 			tadaa.getValueAndPlaySound('up', 'down', getValue);
@@ -95,23 +112,6 @@ vows.describe('Tadaa Tests')
 	teardown: function() {
 		tadaa.playCorrectSound.restore();
 	}
-})
-*/
-/*
-.addBatch({
-    'when start called' : {
-        topic: function() {
-            var clock = sinon.useFakeTimers();
-            sinon.stub(tadaa, 'getValueAndPlaySound').yields(null);
-            tadaa.start(10, 'upsound', 'downSound', 'getValue', 'getValueOptions', 'audioPlayer');
-            clock.tick(20); 
-        },
-        'should pass through parameters': function(err, result) {
-            tadaa.getValueAndPlaySound
-                 .calledWith('upsound', 'downSound', 'getValue', 'getValueOptions', 'audioPlayer')
-                 .should.be.true;
-        } 
-    }
 })
 */
 .export(module);
