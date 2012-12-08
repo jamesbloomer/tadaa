@@ -1,8 +1,8 @@
 var vows = require('vows'),
-		should = require('should'),
-		sinon = require('sinon'),
-		child = require('child_process'),
-		tadaa = require('../lib/tadaa.js');
+	should = require('should'),
+	sinon = require('sinon'),
+	child = require('child_process'),
+	tadaa = require('../lib/tadaa.js');
 
 vows.describe('Tadaa Tests')
 .addBatch({ 
@@ -14,7 +14,7 @@ vows.describe('Tadaa Tests')
 		'should not error' : function(err, result) {
 			should.not.exist(err);
 		},
-		'should play up.wav' : function() {
+		'should play up.wav' : function() { 
 			child.exec.calledWith('aplay up.wav').should.be.true;
 		} 
 	},
