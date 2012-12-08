@@ -28,6 +28,6 @@
   },
   "main": "./lib/tadaa",
   "bin": { "tadaa": "./bin/tadaa" },
-  "scripts": { "test": "vows test/*_test.js --spec" },
-  "engines": { "node": ">= 0.4.12 < 0.7.0" }
+  "scripts": { "test": "mocha test/*_test.js --reporter spec" },
+  "engines": { "node": ">= 0.4.12 < 0.9.0" }
 }
