@@ -76,5 +76,9 @@ describe('Tadaa', function() {
 //            console.log('after assert');
 //            done();
 //		});
+
+        // Should call plugin.interval
+        
+        // should pass plugin.execute
 //	});
 });
