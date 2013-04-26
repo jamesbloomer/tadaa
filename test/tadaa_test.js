@@ -126,9 +126,6 @@ describe('Tadaa', function() {
 
 		it('should call getValueAndPlaySound', function() {
             assert(tadaa.getValueAndPlaySound.calledOnce);
-            // console.log(tadaa.getValueAndPlaySound);
-            // assert.equal(tadaa.getValueAndPlaySound.args[0][0][0].sound, 'upsound');
-            // assert.equal(tadaa.getValueAndPlaySound.args[0][0][1].sound, 'downsound');            
 		});
 	});
 });
