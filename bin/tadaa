@@ -22,7 +22,7 @@ var options;
 var getValue;
 
 var start = function() {
-	tadaa.start(program.interval, program.up, program.down, getValue, options, program.audioplayer);
+	tadaa.start(program.interval, [{fn: tadaa.up, sound: program.up}, {fn:tadaa.down, sound:program.down}], getValue, options, program.audioplayer);
 };
 
 program

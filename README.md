@@ -15,14 +15,22 @@ Tadaa defaults to 'aplay' (available for Linux systems) but the player can be co
 
 ## Usage
 
-Tada can play an up or a down sound, depending on whether the value you are monitoring goes up or down.
+Tada can play a sound, depending the value you are monitoring.
 
     var tadaa = require('tadaa');
+    var audioPlayer = 'mplayer' // player used to play sounds, defaults to aplay
     var interval = 60000;       // time in ms for which the value function is called
     var up = 'up.wav';          // sound to play when value goes up
     var down = 'down.wav';      // sound to play when value goes down
-    var audioPlayer = 'mplayer' // player used to play sounds, defaults to aplay
     
+    var fnup = function(currentValue, newValue) {
+        return newValue > currentValue;  
+    };
+    
+    var fndown = function(currentValue, newValue) {
+        return newValue < currentValue;  
+    };
+
     // Function to call to get the value
     var getValue = function(callback){
         // ...my clever value logic...
@@ -30,8 +38,14 @@ Tada can play an up or a down sound, depending on whether the value you are moni
         
     var getValueOptions = { a : 1, b : 2 }; // Data to pass to the function.
     
-    tadaa.start(interval, up, down, getValue, getValueOptions, audioPlayer};
+    tadaa.start(interval, [{fn: fnup, sound:up}, {fn: fndown, sound:down}], getValue, getValueOptions, audioPlayer};
     
+## Tadaa logic functions included in the box
+- up
+- down
+- nochange
+- zero
+
 ## Examples
 
 Use Tadaa to

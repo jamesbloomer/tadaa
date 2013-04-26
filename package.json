@@ -18,10 +18,13 @@
     "commander": "0.5.x",
     "pivotal": "0.1.x"
   },
+  "dependencies" : {
+    "async" : "x.x.x"
+  },
   "devDependencies" : {
   	"jshint" : "0.5.x",
   	"should" : "0.5.x",
-		"sinon" : "1.3.x",
+    "sinon" : "1.3.x",
     "mocha" : "x.x.x"
 	},
   "main": "./lib/tadaa",

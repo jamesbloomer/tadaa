@@ -1,0 +1,3 @@
+{"ts":1354981828773,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1354981841120,"patch":[[{"diffs":[[1,"var two = {};\r\n\r\nmodule.exports = two;"]],"start1":0,"start2":0,"length1":0,"length2":38}]],"length":38,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1354982307705,"patch":[[{"diffs":[[0," {};\r\n\r\n"],[1,"two.test = function() {\r\n  return true;  \r\n};\r\n\r\n"],[0,"module.e"]],"start1":9,"start2":9,"length1":16,"length2":65}]],"length":87,"saved":false}

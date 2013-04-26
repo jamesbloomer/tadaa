@@ -15,14 +15,16 @@ describe('Tadaa', function() {
 		});
 		
 		it('should not error when playCorrectSound called', function(done) {
-			tadaa.playCorrectSound(1, 2, 'up.wav', 'down.wav', null, function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(1, 2, logic, null, function(err) {
 				assert.equal(err, null);
 				done();
 			});
 		});
 
 		it('should play up.wav', function(done) {
-			tadaa.playCorrectSound(1, 2, 'up.wav', 'down.wav', null, function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(1, 2, logic, null, function(err) {
 				assert(child.exec.calledWith('aplay up.wav'));
 				done();
 			});
@@ -39,14 +41,16 @@ describe('Tadaa', function() {
 		});
 		
 		it('should not error when playCorrectSound called', function(done) {
-			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', null, function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(2, 1, logic, null, function(err) {
 				assert.equal(err, null);
 				done();
 			});
 		});
 
 		it('should play down.wav', function(done) {
-			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', null, function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(2, 1, logic, null, function(err) {
 				assert(child.exec.calledWith('aplay down.wav'));
 				done();
 			});
@@ -63,14 +67,16 @@ describe('Tadaa', function() {
 		});
 		
 		it('should not error when playCorrectSound called', function(done) {
-			tadaa.playCorrectSound(1, 1, 'up.wav', 'down.wav', null, function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(1, 1, logic, null, function(err) {
 				assert.equal(err, null);
 				done();
 			});
 		});
 
 		it('should not play a sound', function(done) {
-			tadaa.playCorrectSound(1, 1, 'up.wav', 'down.wav', null, function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(1, 1, logic, null, function(err) {
 				assert.equal(child.exec.called, false);
 				done();
 			});
@@ -87,14 +93,16 @@ describe('Tadaa', function() {
 		});
 		
 		it('should not error', function(done) {
-			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', 'afplay', function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(2, 1, logic, 'afplay', function(err) {
 				assert.equal(err, null);
 				done();
 			});
 		});
 
 		it('should play down.wav with afplay', function(done) {
-			tadaa.playCorrectSound(2, 1, 'up.wav', 'down.wav', 'afplay', function(err) {
+            var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(2, 1, logic, 'afplay', function(err) {
 				assert(child.exec.calledWith('afplay down.wav'));
 				done();
 			});
@@ -102,19 +110,25 @@ describe('Tadaa', function() {
 	});
 
 	describe('when start called', function() {
+        var clock;
+        
 		beforeEach(function() {
 			sinon.stub(tadaa, 'getValueAndPlaySound');
-            var clock = sinon.useFakeTimers();
-            tadaa.start(10, 'upsound', 'downSound', 'getValue', 'getValueOptions', 'audioPlayer');
+            clock = sinon.useFakeTimers();
+            tadaa.start(10, [{fn: tadaa.up, sound:'upsound'}, {fn: tadaa.down, sound:'downsound'}], 'getValue', 'getValueOptions', 'audioPlayer');
             clock.tick(15);
 		});
 		
 		afterEach(function() {
 			tadaa.getValueAndPlaySound.restore();
+            clock.restore();
 		});
 
 		it('should call getValueAndPlaySound', function() {
             assert(tadaa.getValueAndPlaySound.calledOnce);
+            // console.log(tadaa.getValueAndPlaySound);
+            // assert.equal(tadaa.getValueAndPlaySound.args[0][0][0].sound, 'upsound');
+            // assert.equal(tadaa.getValueAndPlaySound.args[0][0][1].sound, 'downsound');            
 		});
 	});
 });
