@@ -1,4 +1,0 @@
-{"ts":1354981789951,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
-{"contributors":[],"silentsave":false,"ts":1354981823037,"patch":[[{"diffs":[[1,"var one = {}\n\nmodule.exports = one;"]],"start1":0,"start2":0,"length1":0,"length2":35}]],"length":35,"saved":false}
-{"ts":1354981827792,"patch":[[{"diffs":[[0,"one = {}"],[1,";"],[0,"\n\nmodule"]],"start1":4,"start2":4,"length1":16,"length2":17}]],"length":36,"saved":false}
-{"contributors":[],"silentsave":false,"ts":1354982299631,"patch":[[{"diffs":[[0," = {};\n\n"],[1,"one.test = function() {\n  return true;  \n};\n\n"],[0,"module.e"]],"start1":7,"start2":7,"length1":16,"length2":61}]],"length":81,"saved":false}
