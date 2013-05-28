@@ -16,9 +16,7 @@
 	"dependencies": {
     "buddha": "1.0.x", 
     "commander": "0.5.x",
-    "pivotal": "0.1.x"
-  },
-  "dependencies" : {
+    "pivotal": "0.1.x",
     "async" : "x.x.x"
   },
   "devDependencies" : {
@@ -30,5 +28,5 @@
   "main": "./lib/tadaa",
   "bin": { "tadaa": "./bin/tadaa" },
   "scripts": { "test": "mocha test/*_test.js --reporter spec" },
-  "engines": { "node": ">= 0.4.12 < 0.9.0" }
+  "engines": { "node": ">= 0.4.12 < 0.11.0" }
 }
