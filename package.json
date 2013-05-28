@@ -1,7 +1,7 @@
 { 
   "name": "tadaa",
 	"description": "Monitor stuff via the medium of sound.",
-	"version": "0.0.4",
+	"version": "0.1.0",
   "licenses": [{
     "type": "MIT",
     "url": "https://github.com/jamesbloomer/tadaa/raw/master/LICENSE"
