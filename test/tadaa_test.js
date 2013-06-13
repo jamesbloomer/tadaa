@@ -7,7 +7,7 @@ var mocha = require('mocha'),
 describe('Tadaa', function() {
 	describe('when result is greater than current', function() {
 		beforeEach(function() {
-			sinon.stub(child, 'exec').yields(null);
+			sinon.stub(child, 'exec').yields();
 		});
 		
 		afterEach(function() {
@@ -18,7 +18,7 @@ describe('Tadaa', function() {
             var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
 			tadaa.playCorrectSound(1, 2, logic, null, function(err) {
 				assert.equal(err, null);
-				done();
+				return done();
 			});
 		});
 
@@ -26,7 +26,7 @@ describe('Tadaa', function() {
             var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
 			tadaa.playCorrectSound(1, 2, logic, null, function(err) {
 				assert(child.exec.calledWith('aplay up.wav'));
-				done();
+				return done();
 			});
 		});
 	});
@@ -44,7 +44,7 @@ describe('Tadaa', function() {
             var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
 			tadaa.playCorrectSound(2, 1, logic, null, function(err) {
 				assert.equal(err, null);
-				done();
+				return done();
 			});
 		});
 
@@ -52,7 +52,7 @@ describe('Tadaa', function() {
             var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
 			tadaa.playCorrectSound(2, 1, logic, null, function(err) {
 				assert(child.exec.calledWith('aplay down.wav'));
-				done();
+				return done();
 			});
 		});
 	});
@@ -70,7 +70,7 @@ describe('Tadaa', function() {
             var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
 			tadaa.playCorrectSound(1, 1, logic, null, function(err) {
 				assert.equal(err, null);
-				done();
+				return done();
 			});
 		});
 
@@ -78,7 +78,33 @@ describe('Tadaa', function() {
             var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
 			tadaa.playCorrectSound(1, 1, logic, null, function(err) {
 				assert.equal(child.exec.called, false);
-				done();
+				return done();
+			});
+		});
+	});
+
+	describe('when result drops to zero', function() {
+		beforeEach(function() {
+			sinon.stub(child, 'exec').yields(null);
+		});
+		
+		afterEach(function() {
+			child.exec.restore();
+		});
+		
+		it('should not error when playCorrectSound called', function(done) {
+            var logic = [{fn: tadaa.dropToZero, sound: "dropToZero.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(1, 0, logic, null, function(err) {
+				assert.equal(err, null);
+				return done();
+			});
+		});
+
+		it('should play dropToZero.wav', function(done) {
+            var logic = [{fn: tadaa.dropToZero, sound: "dropToZero.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
+			tadaa.playCorrectSound(1, 0, logic, null, function(err) {
+				assert(child.exec.calledWith('aplay dropToZero.wav'));
+				return done();
 			});
 		});
 	});
@@ -104,7 +130,7 @@ describe('Tadaa', function() {
             var logic = [{fn: tadaa.up, sound: "up.wav"}, {fn: tadaa.down, sound: 'down.wav'}];
 			tadaa.playCorrectSound(2, 1, logic, 'afplay', function(err) {
 				assert(child.exec.calledWith('afplay down.wav'));
-				done();
+				return done();
 			});
 		});
 	});

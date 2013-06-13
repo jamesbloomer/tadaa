@@ -54,7 +54,7 @@ Tada can play a sound, depending the value you are monitoring.
 - up
 - down
 - nochange
-- zero
+- dropToZero
 
 ## Examples
 
