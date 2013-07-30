@@ -2,7 +2,6 @@
 
 var tadaa = require('../lib/tadaa.js'),
     pivotaltracker = require('../lib/pivotaltracker.js'),
-    zendesk = require('../lib/zendesk.js'),
     program = require('commander');
 
 program
@@ -12,11 +11,7 @@ program
 	.option('-d, --down [down]', 'The sound to play when the monitored value goes down')
 	.option('-a, --audioplayer [audioplayer]', 'The audio player to use to play the sounds', 'aplay')
 	.option('-t, --pttoken [pttoken]', 'A Pivotal Tracker API token')
-	.option('-p, --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id')
-	.option('-h, --zenhost [zenhost]', 'The Zendesk host')
-	.option('-e, --zenemail [zenemail]', 'Email for Zendesk')
-	.option('-s, --zenpassword [zenpassword]', 'Password for Zendesk')
-	.option('-v, --zenview [zenview ]', 'The Zendesk view to monitor');
+	.option('-p, --ptprojectid [ptprojectid]', 'A Pivotal Tracker project id');
 
 var options;
 var getValue;
@@ -46,16 +41,6 @@ program
 
 			start();
 		});
-	});
-
-program
-	.command('zendesk')
-	.description('monitor Zendesk')
-	.action(function() {
-		console.log('Monitoring Zendesk');
-		options = { zenHost: program.zenhost, zenEmail: program.zenemail, zenPassword: program.zenpassword, zenView: program.zenview };
-		getValue = zendesk.getOpenTickets;
-		start();
 	});
     
 program.parse(process.argv);
