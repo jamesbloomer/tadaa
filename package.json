@@ -1,13 +1,12 @@
 { 
   "name": "tadaa",
 	"description": "Monitor stuff via the medium of sound.",
-	"version": "0.1.1",
+	"version": "0.2.1",
   "licenses": [{
     "type": "MIT",
     "url": "https://github.com/jamesbloomer/tadaa/raw/master/LICENSE"
   }],
   "author": { "name": "James Bloomer", "url": "https://github.com/jamesbloomer" },
-  "contributors": [{ "name": "Roy Lines", "url": "http://roylines.co.uk" } ],
   "repository": {
     "type": "git",
     "url": "http://github.com/jamesbloomer/tadaa.git" 
@@ -24,7 +23,6 @@
     "mocha" : "x.x.x"
 	},
   "main": "./lib/tadaa",
-  "bin": { "tadaa": "./bin/tadaa" },
   "scripts": { "test": "mocha test/*_test.js --reporter spec" },
   "engines": { "node": ">= 0.4.12 < 0.11.0" }
 }
