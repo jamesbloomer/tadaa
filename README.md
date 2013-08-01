@@ -15,7 +15,9 @@ Tadaa defaults to 'aplay' (available for Linux systems) but the player can be co
 
 ## Usage
 
-Tada can play a sound, depending the value you are monitoring.
+Tadaa can be used as a stand-alone module or using [tadaa-runner](https://github.com/jamesbloomer/tadaa-runner).
+
+Use as a module like this:
 
     var tadaa = require('../lib/tadaa');
 
@@ -24,10 +26,12 @@ Tada can play a sound, depending the value you are monitoring.
     var up = 'up.wav';          // sound to play when value goes up
     var down = 'down.wav';      // sound to play when value goes down
         
+    // Logic to determine what "up" means.
     var fnup = function(currentValue, newValue) {
         return newValue > currentValue;  
     };
 
+    // Logic to determine what "down" means.
     var fndown = function(currentValue, newValue) {
         return newValue < currentValue;  
     };
@@ -55,6 +59,8 @@ Tada can play a sound, depending the value you are monitoring.
 - down
 - nochange
 - dropToZero
+
+Just reference tadaa.up etc. in the logic array.
 
 ## Examples
 

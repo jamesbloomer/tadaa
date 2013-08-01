@@ -15,7 +15,6 @@
   "keywords": ["monitor", "sounds", "audio", "noises"],
 	"dependencies": {
     "commander": "0.5.x",
-    "pivotal": "0.1.x",
     "async" : "x.x.x"
   },
   "devDependencies" : {
