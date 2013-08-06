@@ -1,7 +1,7 @@
 { 
   "name": "tadaa",
 	"description": "Monitor stuff via the medium of sound.",
-	"version": "0.2.1",
+	"version": "0.2.2",
   "licenses": [{
     "type": "MIT",
     "url": "https://github.com/jamesbloomer/tadaa/raw/master/LICENSE"
@@ -13,7 +13,6 @@
   },
   "keywords": ["monitor", "sounds", "audio", "noises"],
 	"dependencies": {
-    "commander": "0.5.x",
     "async" : "x.x.x"
   },
   "devDependencies" : {
