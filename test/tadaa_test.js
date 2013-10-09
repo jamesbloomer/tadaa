@@ -141,7 +141,7 @@ describe('Tadaa', function() {
 		beforeEach(function() {
 			sinon.stub(tadaa, 'getValueAndPlaySound');
             clock = sinon.useFakeTimers();
-            tadaa.start(10, [{fn: tadaa.up, sound:'upsound'}, {fn: tadaa.down, sound:'downsound'}], 'getValue', 'getValueOptions', 'audioPlayer');
+            tadaa.start('NAME', 10, [{fn: tadaa.up, sound:'upsound'}, {fn: tadaa.down, sound:'downsound'}], 'getValue', 'getValueOptions', 'audioPlayer');
             clock.tick(15);
 		});
 		
@@ -152,6 +152,21 @@ describe('Tadaa', function() {
 
 		it('should call getValueAndPlaySound', function() {
             assert(tadaa.getValueAndPlaySound.calledOnce);
+            // TODO args coming back undefined in test
+            // assert.deepEqual(tadaa.getValueAndPlaySound.args[0][0], 'NAME');
+            // assert.deepEqual(tadaa.getValueAndPlaySound.args[0][1], [{fn: tadaa.up, sound:'upsound'}, {fn: tadaa.down, sound:'downsound'}]);
+            // assert.deepEqual(tadaa.getValueAndPlaySound.args[0][2], 'getValue');
+            // assert.deepEqual(tadaa.getValueAndPlaySound.args[0][3], 'getValueOptions');
+            // assert.deepEqual(tadaa.getValueAndPlaySound.args[0][4], 'audioPlayer');
 		});
+	});
+
+	describe('with two different tags', function() {
+        // TODO
+		// first : 10 -> 20 -> 30  === up played twice
+		// second : 5 -> 15 -> 25  === up played twice
+
+		// -> 20, 15, 30, 25
+
 	});
 });

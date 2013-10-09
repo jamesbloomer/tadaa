@@ -25,6 +25,7 @@ var getValue = function(options, callback){
 var getValueOptions = { a : 1, b : 2 }; 
 
 tadaa.start(
+    'random',
     interval, 
     [{fn: fnup, sound:up}, {fn: fndown, sound:down}], 
     getValue, 

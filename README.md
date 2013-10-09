@@ -48,6 +48,7 @@ Use as a module like this:
     var getValueOptions = { a : 1, b : 2 }; 
 
     tadaa.start(
+        'a_name_for_this_monitor',
         interval, 
         [{fn: fnup, sound:up}, {fn: fndown, sound:down}], 
         getValue, 
